@@ -1,0 +1,29 @@
+<hr />
+<p class="text-center mt-4 fs-5 fw-bold">Adding new server component</p>
+<div class="form-floating mb-3">
+    <input
+        type="text"
+        id="floatingInputs"
+        class="form-control"
+        placeholder="Add New Server"
+        [(ngModel)]="serverName"
+    />
+    <label for="floatingInputs">Server Name</label>
+    <button
+        class="btn btn-primary fs-6 mt-2 p-2 w-100"
+        [disabled]="!allowNewServer"
+        (click)="onCreateServer()"
+    >
+        Add Server
+    </button>
+</div>
+
+@if (serverCreated) {
+    <p class="lead mt-3 text-center">
+        Server was created! Name: {{ serverName }}
+    </p>
+}
+@for (server of servers; track serverName) {
+    <app-server></app-server>
+}
+<hr />
