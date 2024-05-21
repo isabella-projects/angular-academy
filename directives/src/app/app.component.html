@@ -9,6 +9,7 @@
                 <!-- Angular 17 simple solution -->
                 <div>
                     <h1>Angular 17+ control flow solution</h1>
+                    <hr />
                     @for (number of numbers; track $index) {
                         @if (onlyOdd && number % 2 !== 0) {
                             <li
@@ -43,6 +44,7 @@
                 <!-- Old Angular -->
                 <div>
                     <h1>Old Angular Solution with *ngIf/*ngFor directives</h1>
+                    <hr />
                     <div *ngIf="onlyOdd">
                         <li
                             class="list-group-item"
@@ -71,6 +73,12 @@
                     </div>
                 </div>
             </ul>
+            <p appHighlight>
+                Styling the heading with a custom basic angular directive.
+            </p>
+            <p appColored>
+                Styling the heading with a custom advanced angular directive.
+            </p>
         </div>
     </div>
 </div>

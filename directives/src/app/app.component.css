@@ -9,3 +9,15 @@
 .even {
     color: blue;
 }
+
+.basic {
+    background-color: yellow;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.advanced {
+    background-color: blue;
+    padding: 20px;
+    border-radius: 10px;
+}
