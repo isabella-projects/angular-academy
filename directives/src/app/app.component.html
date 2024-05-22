@@ -1,14 +1,20 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-12">
-            <button class="btn btn-primary" (click)="onlyOdd = !onlyOdd">
-                Only show odd numbers
-            </button>
+            <h1 class="heading text-center">Angular Directives Excercises</h1>
+            <div class="btn-wrapper">
+                <button class="btn btn-primary" (click)="onlyOdd = !onlyOdd">
+                    Only show odd numbers
+                </button>
+            </div>
             <br /><br />
             <ul class="list-group">
                 <!-- Angular 17 simple solution -->
-                <div>
-                    <h1>Angular 17+ control flow solution</h1>
+                <div class="col-center">
+                    <h1>
+                        Angular 17+ control flow solution with
+                        <code>&commat;if</code> and <code>&commat;for</code>
+                    </h1>
                     <hr />
                     @for (number of numbers; track $index) {
                         @if (onlyOdd && number % 2 !== 0) {
@@ -17,7 +23,7 @@
                                 [ngStyle]="{
                                     backgroundColor:
                                         number % 2 !== 0
-                                            ? 'yellow'
+                                            ? '#f1c40f'
                                             : 'transparent'
                                 }"
                                 class="list-group-item"
@@ -30,7 +36,7 @@
                                 [ngStyle]="{
                                     backgroundColor:
                                         number % 2 === 0
-                                            ? 'limegreen'
+                                            ? '#2ecc71'
                                             : 'transparent'
                                 }"
                                 class="list-group-item"
@@ -42,8 +48,11 @@
                 </div>
 
                 <!-- Old Angular -->
-                <div>
-                    <h1>Old Angular Solution with *ngIf/*ngFor directives</h1>
+                <div class="col-center">
+                    <h1>
+                        Old Angular Solution with
+                        <code>*ngIf</code> and <code>*ngFor</code> directives
+                    </h1>
                     <hr />
                     <div *ngIf="onlyOdd">
                         <li
@@ -51,7 +60,7 @@
                             [ngClass]="{ odd: odd % 2 !== 0 }"
                             [ngStyle]="{
                                 backgroundColor:
-                                    odd % 2 !== 0 ? 'yellow' : 'transparent'
+                                    odd % 2 !== 0 ? '#f1c40f' : 'transparent'
                             }"
                             *ngFor="let odd of oddNumbers"
                         >
@@ -64,7 +73,7 @@
                             [ngClass]="{ even: even % 2 === 0 }"
                             [ngStyle]="{
                                 backgroundColor:
-                                    even % 2 === 0 ? 'limegreen' : 'transparent'
+                                    even % 2 === 0 ? '#2ecc71' : 'transparent'
                             }"
                             *ngFor="let even of evenNumbers"
                         >
@@ -72,11 +81,94 @@
                         </li>
                     </div>
                 </div>
+                <!-- 3rd solution with ngIf as property binding -->
+                <div class="col-center">
+                    <h1>
+                        3rd solution with ngIf as property binding and
+                        <code>ng-template</code>
+                    </h1>
+                    <hr />
+                    <ng-template [ngIf]="onlyOdd">
+                        <div>
+                            <li
+                                class="list-group-item"
+                                [ngClass]="{ odd: odd % 2 !== 0 }"
+                                [ngStyle]="{
+                                    backgroundColor:
+                                        odd % 2 !== 0
+                                            ? '#f1c40f'
+                                            : 'transparent'
+                                }"
+                                *ngFor="let odd of oddNumbers"
+                            >
+                                {{ odd }}
+                            </li>
+                        </div>
+                    </ng-template>
+                    <ng-template [ngIf]="!onlyOdd">
+                        <div>
+                            <li
+                                class="list-group-item"
+                                [ngClass]="{ even: even % 2 === 0 }"
+                                [ngStyle]="{
+                                    backgroundColor:
+                                        even % 2 === 0
+                                            ? '#2ecc71'
+                                            : 'transparent'
+                                }"
+                                *ngFor="let even of evenNumbers"
+                            >
+                                {{ even }}
+                            </li>
+                        </div>
+                    </ng-template>
+                </div>
+                <hr />
+                <!-- 4-th solution with custom structural directive built -->
+                <div class="col-center">
+                    <h1>
+                        4-th solution with custom structural directive built
+                    </h1>
+                    <div *appUnless="onlyOdd">
+                        <li
+                            class="list-group-item"
+                            [ngClass]="{ even: even % 2 === 0 }"
+                            [ngStyle]="{
+                                backgroundColor:
+                                    even % 2 === 0 ? '#2ecc71' : 'transparent'
+                            }"
+                            *ngFor="let even of evenNumbers"
+                        >
+                            {{ even }}
+                        </li>
+                    </div>
+                    <div *appUnless="!onlyOdd">
+                        <li
+                            class="list-group-item"
+                            [ngClass]="{ odd: odd % 2 !== 0 }"
+                            [ngStyle]="{
+                                backgroundColor:
+                                    odd % 2 !== 0 ? '#f1c40f' : 'transparent'
+                            }"
+                            *ngFor="let odd of oddNumbers"
+                        >
+                            {{ odd }}
+                        </li>
+                    </div>
+                </div>
             </ul>
+
             <p appHighlight>
                 Styling the heading with a custom basic angular directive.
             </p>
-            <p appColored [defaultColor]="'yellow'" [highlightColor]="'red'">
+            <p
+                class="directives"
+                appColored
+                [defaultColor]="'#34495e'"
+                [highlightColor]="'#c0392b'"
+                [defaultPadding]="'20px'"
+                [hoverPadding]="'25px'"
+            >
                 Styling the heading with a custom advanced angular directive.
             </p>
         </div>
