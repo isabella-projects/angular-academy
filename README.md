@@ -15,6 +15,8 @@
 -   View encapsulation & Local references in templates
 -   Important core decorators
     -   Accessing templates & DOM with @ViewChild
+    -   @Input, @Output, @HostBinding and more..
+-   Attribute Directives, Structural Directives
 -   **Lifecycle Hooks** and more..
 
 # 🛠 Tech Stack
