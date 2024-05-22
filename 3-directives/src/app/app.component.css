@@ -58,12 +58,24 @@ li {
     background-color: rgb(15, 137, 185);
     padding: 20px;
     border-radius: 10px;
-    margin-bottom: 2rem;
+}
+
+.ng-switch {
+    background-color: #332494;
+    font-size: var(--directives-size);
+    border-radius: 10px;
+    margin: 2rem;
+}
+
+.ng-switch p {
+    padding: 20px;
 }
 
 p {
     color: #0a0141;
     text-align: center;
+    margin: 2rem;
+    font-weight: 600;
 }
 
 .advanced {
@@ -74,6 +86,5 @@ p {
 
 .directives {
     font-size: var(--directives-size);
-    margin-bottom: 2rem;
     border-radius: 10px;
 }
