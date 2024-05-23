@@ -2,7 +2,7 @@
     <img src="https://i.imgur.com/YlGrpaq.png" width="800px" height="auto">
 </div>
 
-# 🌐 Angular Excercises
+# 🌐 Angular Excercises - New & Old version
 
 # 📝 Description
 
@@ -15,7 +15,7 @@
 -   View encapsulation & Local references in templates
 -   Important core decorators
     -   Accessing templates & DOM with @ViewChild
-    -   @Input, @Output, @HostBinding and more..
+    -   @Input, @Output, @HostBinding, @HostListener and a lot more..
 -   Attribute Directives, Structural Directives
 -   **Lifecycle Hooks** and more..
 
