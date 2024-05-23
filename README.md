@@ -2,11 +2,11 @@
     <img src="https://i.imgur.com/YlGrpaq.png" width="800px" height="auto">
 </div>
 
-# 🌐 Angular Excercises - New & Old version
+# 🌐 Angular Excercises v18 - New & Old version
 
 # 📝 Description
 
-## ⚡ Exploring Angular by trying out all the core elements with excercises.
+## ⚡ Exploring Angular features by trying out all the core elements with excercises.
 
 ### 💡 What did I learn through this and published in this repository?
 
@@ -15,7 +15,9 @@
 -   View encapsulation & Local references in templates
 -   Important core decorators
     -   Accessing templates & DOM with @ViewChild
-    -   @Input, @Output, @HostBinding, @HostListener and a lot more..
+    -   @Input, @Output, @HostBinding, @HostListener..
+    -   Standalone Components, Directives, Services
+    -   Control flow v18 and a lot more..
 -   Attribute Directives, Structural Directives
 -   **Lifecycle Hooks** and more..
 
