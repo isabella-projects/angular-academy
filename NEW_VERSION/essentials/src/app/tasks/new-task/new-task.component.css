@@ -41,6 +41,11 @@ textarea {
     background-color: #d0c2e1;
 }
 
+.summary {
+    resize: vertical;
+    max-height: 270px;
+}
+
 .actions {
     margin: 1rem 0 0;
     display: flex;

@@ -6,14 +6,17 @@ import {
     // computed,
     // input,
 } from '@angular/core';
-import { User } from './user.model';
+
+import { CardComponent } from '../shared/card/card.component';
+
+import { type User } from './user.model';
 
 @Component({
     selector: 'app-user',
     standalone: true,
-    imports: [],
     templateUrl: './user.component.html',
     styleUrl: './user.component.css',
+    imports: [CardComponent],
 })
 export class UserComponent {
     @Input({ required: true }) user!: User;
