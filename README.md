@@ -2,11 +2,13 @@
     <img src="https://i.imgur.com/YlGrpaq.png" width="800px" height="auto">
 </div>
 
-# 🌐 Angular Excercises v18 - New & Old version
+# 🌐 Angular Excercises v18 - Demo Projects & Excercises
 
 # 📝 Description
 
-## ⚡ Exploring Angular features by trying out all the core elements with excercises.
+## ⚡ Exploring Angular features by trying out all the core elements with excercises and demo projects.
+
+## 📌 This repository includes the NEWEST version of Angular - 17+ and OLD version < 16.
 
 ### 💡 What did I learn through this and published in this repository?
 
@@ -17,9 +19,10 @@
     -   Accessing templates & DOM with @ViewChild
     -   @Input, @Output, @HostBinding, @HostListener..
     -   Standalone Components, Directives, Services
-    -   Control flow v18 and a lot more..
+    -   Control flow v17+ and a lot more..
 -   Attribute Directives, Structural Directives
--   **Lifecycle Hooks** and more..
+-   Proper usage of TypeScript in Angular Projects
+-   **Lifecycle Hooks** and many many more..
 
 # 🛠 Tech Stack
 
