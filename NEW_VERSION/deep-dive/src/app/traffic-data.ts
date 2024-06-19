@@ -1,6 +1,6 @@
 import { TrafficData } from './traffic-data.model';
 
-export const dummyData: TrafficData<number>[] = [
+export const dummyData: TrafficData[] = [
     {
         id: 'd1',
         value: 433,

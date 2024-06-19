@@ -1,4 +1,4 @@
-export interface TrafficData<T> {
+export interface TrafficData {
     id: string;
-    value: T;
+    value: number;
 }
