@@ -13,13 +13,14 @@ import { Component, ViewEncapsulation, input } from '@angular/core';
     },
 })
 export class ControlComponent {
-    label = input.required<string>();
     /* ----------- Old way -------------
     @HostBinding('class') className = 'control';
     @HostListener('click') onClick() {
         console.log('Clicked!');
     }
     --------------------------------- */
+
+    label = input.required<string>();
 
     onClick() {
         console.log('Clicked!');
