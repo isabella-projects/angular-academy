@@ -9,8 +9,19 @@ import { Component, ViewEncapsulation, input } from '@angular/core';
     encapsulation: ViewEncapsulation.None,
     host: {
         class: 'control',
+        '(click)': 'onClick()',
     },
 })
 export class ControlComponent {
     label = input.required<string>();
+    /* ----------- Old way -------------
+    @HostBinding('class') className = 'control';
+    @HostListener('click') onClick() {
+        console.log('Clicked!');
+    }
+    --------------------------------- */
+
+    onClick() {
+        console.log('Clicked!');
+    }
 }
