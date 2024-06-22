@@ -1,4 +1,11 @@
-import { Component, ViewEncapsulation, input } from '@angular/core';
+import {
+    Component,
+    /* ContentChild ,*/
+    ElementRef,
+    ViewEncapsulation,
+    contentChild,
+    input,
+} from '@angular/core';
 
 @Component({
     selector: 'app-control',
@@ -13,7 +20,7 @@ import { Component, ViewEncapsulation, input } from '@angular/core';
     },
 })
 export class ControlComponent {
-    /* ----------- Old way -------------
+    /* ----------- Old way with decorators -------------
     @HostBinding('class') className = 'control';
     @HostListener('click') onClick() {
         console.log('Clicked!');
@@ -22,7 +29,20 @@ export class ControlComponent {
 
     label = input.required<string>();
 
+    /* ------------ Angular < 17 decorator way ---------------------------
+    @ContentChild('input') private control?: ElementRef<
+        HTMLInputElement | HTMLTextAreaElement
+    >;
+    ---------------------------------------------------------------------- */
+
+    /* --- Signal way available from Angular 17+ --- */
+    private control =
+        contentChild.required<
+            ElementRef<HTMLInputElement | HTMLTextAreaElement>
+        >('input');
+
     onClick() {
         console.log('Clicked!');
+        console.log(this.control());
     }
 }
