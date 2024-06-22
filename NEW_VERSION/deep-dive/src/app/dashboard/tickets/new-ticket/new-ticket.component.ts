@@ -1,4 +1,9 @@
-import { Component } from '@angular/core';
+import {
+    Component,
+    ElementRef,
+    viewChild /* ViewChild */,
+} from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { ButtonComponent } from '../../../shared/button/button.component';
 import { ControlComponent } from '../../../shared/control/control.component';
@@ -8,6 +13,20 @@ import { ControlComponent } from '../../../shared/control/control.component';
     standalone: true,
     templateUrl: './new-ticket.component.html',
     styleUrl: './new-ticket.component.css',
-    imports: [ButtonComponent, ControlComponent],
+    imports: [ButtonComponent, ControlComponent, FormsModule],
 })
-export class NewTicketComponent {}
+export class NewTicketComponent {
+    /* ------------ Angular < 17 decorator way --------------------------- */
+    // @ViewChild('form') private form?: ElementRef<HTMLFormElement>;
+
+    /* --- Signal way available from Angular 17+ --- */
+    private form = viewChild.required<ElementRef<HTMLFormElement>>('form');
+    /* ---------------------------------- */
+
+    onSubmit(title: string, ticketText: string): void {
+        console.log(title);
+        console.log(ticketText);
+
+        this.form().nativeElement.reset();
+    }
+}
