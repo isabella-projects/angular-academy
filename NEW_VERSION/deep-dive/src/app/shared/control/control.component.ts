@@ -1,8 +1,11 @@
 import {
+    AfterContentInit,
     Component,
     /* ContentChild ,*/
     ElementRef,
     ViewEncapsulation,
+    afterNextRender,
+    afterRender,
     contentChild,
     input,
 } from '@angular/core';
@@ -19,7 +22,7 @@ import {
         '(click)': 'onClick()',
     },
 })
-export class ControlComponent {
+export class ControlComponent implements AfterContentInit {
     /* ----------- Old way with decorators -------------
     @HostBinding('class') className = 'control';
     @HostListener('click') onClick() {
@@ -27,19 +30,35 @@ export class ControlComponent {
     }
     --------------------------------- */
 
-    label = input.required<string>();
-
     /* ------------ Angular < 17 decorator way ---------------------------
     @ContentChild('input') private control?: ElementRef<
         HTMLInputElement | HTMLTextAreaElement
     >;
     ---------------------------------------------------------------------- */
 
+    label = input.required<string>();
+
+    constructor() {
+        /* New Angular 16+ Lifecycle Hooks
+        afterRender(() => {
+            console.log('AFTER RENDER');
+        });
+
+        afterNextRender(() => {
+            console.log('AFTER NEXT RENDER');
+        });
+        ----------------------------------- */
+    }
+
     /* --- Signal way available from Angular 17+ --- */
     private control =
         contentChild.required<
             ElementRef<HTMLInputElement | HTMLTextAreaElement>
         >('input');
+
+    ngAfterContentInit(): void {
+        console.log(this.control());
+    }
 
     onClick() {
         console.log('Clicked!');
