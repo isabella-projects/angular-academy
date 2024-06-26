@@ -4,7 +4,12 @@
     <hr />
 
     <app-auth />
-    @if (isAdmin()) {
-    <p>Admin Dashboard here..</p>
-    }
+
+    <p *appAuth="'admin'" class="protected-content admin">Admin Dashboard</p>
+    <p *appAuth="'user'" class="protected-content unauthenticated">
+        User Dashboard
+    </p>
+    <p *appAuth="'guest'" class="protected-content authenticated">
+        Guest Dashboard
+    </p>
 </main>
