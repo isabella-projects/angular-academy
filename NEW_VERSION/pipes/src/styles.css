@@ -63,5 +63,6 @@ main {
 }
 
 .temperatures li {
+    cursor: pointer;
     margin: 0.5rem;
 }
