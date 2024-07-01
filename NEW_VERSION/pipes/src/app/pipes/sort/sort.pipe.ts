@@ -6,7 +6,7 @@ import { SortDirection, SortModel } from './sort.model';
     standalone: true,
 })
 export class SortPipe implements PipeTransform {
-    transform(value: SortModel, direction: SortDirection = 'asc') {
+    transform(value: SortModel, direction: SortDirection = 'desc') {
         const sorted = [...value];
         sorted.sort((a, b) => {
             if (direction === 'asc') {
