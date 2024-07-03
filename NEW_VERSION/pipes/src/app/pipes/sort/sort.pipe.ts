@@ -4,6 +4,7 @@ import { SortDirection, SortModel } from './sort.model';
 @Pipe({
     name: 'sort',
     standalone: true,
+    pure: false,
 })
 export class SortPipe implements PipeTransform {
     transform(value: SortModel, direction: SortDirection = 'asc') {

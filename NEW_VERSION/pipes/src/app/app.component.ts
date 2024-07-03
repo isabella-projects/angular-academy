@@ -24,9 +24,16 @@ export class AppComponent {
         25, 37, 19, -4, 28, 21, 19, 28, 33, 31, 9, 11, 5, -12, -5,
     ];
 
+    constructor() {
+        this.historicTemperatures.sort((a, b) => {
+            return a > b ? 1 : -1;
+        });
+    }
+
     onReset(index: number) {
-        const temp = [...this.historicTemperatures];
-        temp[index] = 18;
-        this.historicTemperatures = temp;
+        this.historicTemperatures[index] = 18;
+        // const temp = [...this.historicTemperatures];
+        // temp[index] = 18;
+        // this.historicTemperatures = temp;
     }
 }
