@@ -12,6 +12,12 @@
 
 ### 💡 What did I learn through this and published in this repository?
 
+#### ANGULAR 17 & 18 RELEASE
+
+-   Angular Signals, input, output, inject methods
+-   Zoneless
+-   Control flow v17+ - @for, @if, @empty, @defer and more..
+
 -   Lifecycle Hooks
 -   Component structures and splitting
 -   Event binding
@@ -29,9 +35,6 @@
 -   **Routing** and Multi-page Single Page Applications
 -   Code splitting & deferrable views
 -   Properly deploying Angular Apps - CSR, SSR, SGA
--   **ANGULAR 17+ RELEASE**
-    -   Angular Signals, input, output, inject methods
-    -   Control flow v17+ - @for, @if, @empty, @defer and more..
 
 # 🛠 Tech Stack
 
