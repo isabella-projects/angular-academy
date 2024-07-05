@@ -12,18 +12,14 @@
     <p>{{ task().description }}</p>
     <form>
         <select (change)="onChangeTaskStatus(task().id, status.value)" #status>
-            <option value="open" [selected]="task().status === 'OPEN'">
-                Open
-            </option>
+            @for (option of taskStatusOptions; track option.value) {
             <option
-                value="in-progress"
-                [selected]="task().status === 'IN_PROGRESS'"
+                [value]="option.value"
+                [selected]="task().status === option.taskStatus"
             >
-                In-Progress
+                {{ option.text }}
             </option>
-            <option value="done" [selected]="task().status === 'DONE'">
-                Completed
-            </option>
+            }
         </select>
     </form>
 </article>

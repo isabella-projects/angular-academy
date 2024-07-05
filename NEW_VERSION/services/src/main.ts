@@ -1,9 +1,19 @@
 import { bootstrapApplication } from '@angular/platform-browser';
+import { InjectionToken } from '@angular/core';
+
 import { AppComponent } from './app/app.component';
 
-bootstrapApplication(AppComponent).catch((error) => console.error(error));
+import { TasksService } from './app/tasks/tasks.service';
 
-/* Alternative way for injecting services for more complex applications
+export const TasksServiceToken = new InjectionToken<TasksService>(
+    'tasks-service-token'
+);
+
+bootstrapApplication(AppComponent, {
+    providers: [{ provide: TasksServiceToken, useClass: TasksService }],
+}).catch((error) => console.error(error));
+
+/* Alternative way for injecting services applications
 bootstrapApplication(AppComponent, {
     providers: [TasksService]
 }).catch((err) => console.error(err));

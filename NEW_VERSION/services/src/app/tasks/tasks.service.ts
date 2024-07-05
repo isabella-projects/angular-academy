@@ -1,12 +1,10 @@
-import { inject, Injectable, signal } from '@angular/core';
+import { inject, signal } from '@angular/core';
 
 import { Task, TaskStatus } from './task.model';
 
 import { LoggingService } from '../logging.service';
 
-@Injectable({
-    providedIn: 'root',
-})
+// We don't need @Injectable decorator because we created custom Dependency Injection
 export class TasksService {
     private tasks = signal<Task[]>([]);
     private loggingService = inject(LoggingService);
