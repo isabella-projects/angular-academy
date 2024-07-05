@@ -12,17 +12,26 @@
 
 ### 💡 What did I learn through this and published in this repository?
 
--   Properly splitting into components
--   Property & Event binding
+-   Lifecycle Hooks
+-   Component structures and splitting
+-   Event binding
 -   View encapsulation & Local references in templates
 -   Important core decorators
-    -   Accessing templates & DOM with @ViewChild
+    -   Accessing templates & DOM with @ViewChild and more..
     -   @Input, @Output, @HostBinding, @HostListener..
-    -   Standalone Components, Directives, Services
-    -   Control flow v17+ and a lot more..
+    -   Standalone Components, Directives, Services, Pipes
 -   Attribute Directives, Structural Directives
 -   Proper usage of TypeScript in Angular Projects
--   **Lifecycle Hooks** and many many more..
+-   Debugging Angular applications
+-   Services & Dependency Injection
+-   HTTP Requests & Handling responses
+-   User input handling with Forms - Template-driven & reactive
+-   **Routing** and Multi-page Single Page Applications
+-   Code splitting & deferrable views
+-   Properly deploying Angular Apps - CSR, SSR, SGA
+-   **ANGULAR 17+ RELEASE**
+    -   Angular Signals, input, output, inject methods
+    -   Control flow v17+ - @for, @if, @empty, @defer and more..
 
 # 🛠 Tech Stack
 
