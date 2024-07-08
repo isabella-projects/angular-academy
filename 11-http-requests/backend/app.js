@@ -4,6 +4,9 @@ import express from "express";
 import placesRoutes from "./routes/places.js";
 import errorRoutes from "./routes/error.js";
 
+import setCorsHeaders from "./middleware/corsMiddleware.js";
+
+const HOSTNAME = process.env.HOST;
 const PORT = process.env.PORT;
 
 const app = express();
@@ -11,23 +14,17 @@ const app = express();
 app.use(express.static("images"));
 app.use(bodyParser.json());
 
-app.use((_req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    res.setHeader("Access-Control-Allow-Methods", "GET, PUT, DELETE");
-    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-
-    next();
-});
+app.use(setCorsHeaders);
 
 app.use(placesRoutes);
 app.use(errorRoutes);
 
 app.listen(PORT, () => {
-    console.log(`Server is listening at http://localhost:${PORT}`);
+    console.log(`Server is listening at http://${HOSTNAME}:${PORT}`);
 }).on("error", (error) => {
-    if (error.errno === "EADDRINUSE") {
-        console.error(`Port ${PORT} is busy!`);
+    if (error.code === "EADDRINUSE") {
+        console.error(`Port ${PORT} is already in use!`);
     } else {
-        throw error;
+        throw new Error(`Fatal error: ${error}`);
     }
 });
