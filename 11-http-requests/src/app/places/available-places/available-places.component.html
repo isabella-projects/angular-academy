@@ -1,7 +1,17 @@
 <app-places-container title="Available Places">
+    @if (isFetching()) {
+        <div class="preloader-wrapper">
+            <p class="preloader-info">Fetching available places...</p>
+            <img
+                class="preloader"
+                src="loader.svg"
+                alt="Fetching available places..."
+            />
+        </div>
+    }
     @if (places()) {
-    <app-places [places]="places()!" />
+        <app-places [places]="places()!" />
     } @else if (places()?.length === 0) {
-    <p class="fallback-text">Unfortunately, no places could be found.</p>
+        <p class="fallback-text">Unfortunately, no places could be found.</p>
     }
 </app-places-container>

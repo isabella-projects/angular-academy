@@ -1,10 +1,11 @@
 import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs';
 
 import { PlacesComponent } from '../places.component';
 import { PlacesContainerComponent } from '../places-container/places-container.component';
 
 import { Place, PlaceResponse } from '../place.model';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
     selector: 'app-available-places',
@@ -15,16 +16,22 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AvailablePlacesComponent implements OnInit {
     places = signal<Place[] | undefined>(undefined);
+    isFetching = signal(false);
+
     private httpClient = inject(HttpClient);
     private destroyRef = inject(DestroyRef);
 
     ngOnInit(): void {
+        this.isFetching.set(true);
+
         const subscription = this.httpClient
             .get<PlaceResponse>('http://localhost:3000/places')
+            .pipe(map((response) => response.places))
             .subscribe({
-                next: (response) => {
-                    console.log(response);
+                next: (places) => {
+                    this.places.set(places);
                 },
+                complete: () => this.isFetching.set(false),
             });
 
         this.destroyRef.onDestroy(() => {
