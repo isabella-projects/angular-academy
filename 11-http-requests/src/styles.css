@@ -4,8 +4,13 @@
     box-sizing: border-box;
 }
 
+:root {
+    --main-font: "Bricolage Grotesque", sans-serif;
+    --secondary-font: "Raleway", sans-serif;
+}
+
 html {
-    font-family: "Bricolage Grotesque", sans-serif;
+    font-family: var(--main-font);
     line-height: 1.5;
 
     color: #defaf8;
@@ -15,17 +20,23 @@ html {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: 100%;
-    height: 100%;
 }
 
 body {
     margin: 0;
-    padding: 2rem;
     background: linear-gradient(180deg, #1f1c2c 0%, #1f1c2c 100%);
+}
+
+html,
+body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 header {
     text-align: center;
+    margin: 2rem 0.65rem;
 }
 
 header img {
@@ -36,15 +47,52 @@ header img {
 }
 
 header h1 {
-    margin: 0;
-    font-size: 3rem;
+    margin: 0 0 0.5rem 0;
+    font-size: clamp(2rem, calc(0.35rem + 3.5vw), 3rem);
     text-transform: uppercase;
-    letter-spacing: 1rem;
+    letter-spacing: 0.75rem;
 }
 
 header p {
     margin: 0 auto;
-    font-size: 1.15rem;
+    font-size: clamp(0.5rem, calc(0.3rem + 3vw), 1.5rem);
     max-width: 38ch;
     color: #9eb5b4;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+footer {
+    height: 4.5rem;
+    width: 100%;
+    border: 1px solid rgba(34, 2, 71, 0.5);
+    background: radial-gradient(#252136 25%, #120f29 100%);
+    font-family: var(--secondary-font);
+    font-weight: 500;
+    letter-spacing: 1.5pt;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+footer .author,
+footer .copyright {
+    color: #fff;
+    font-weight: lighter;
+}
+
+footer .author a {
+    color: burlywood;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+footer .author a:hover {
+    color: #c59454;
 }
