@@ -178,5 +178,25 @@
         },
         "lat": -3.4653,
         "lon": -58.38
+    },
+    {
+        "id": "p19",
+        "title": "Caribbean Beach Golden",
+        "image": {
+            "src": "beach-digital.jpg",
+            "alt": "Awesome golden sand in the newest Caribbean Beach Golden Edition."
+        },
+        "lat": -6.2122,
+        "lon": -28.78
+    },
+    {
+        "id": "p20",
+        "title": "Desert Hijack Night",
+        "image": {
+            "src": "desert-digital.jpg",
+            "alt": "The darkest place in the sand dunes to be found nowadays."
+        },
+        "lat": -9.1672,
+        "lon": -45.12
     }
 ]

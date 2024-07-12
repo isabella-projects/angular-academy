@@ -4,7 +4,7 @@ export const getPlaces = async (_req, res) => {
     await new Promise((resolve) =>
         setTimeout(() => {
             resolve();
-        }, 3000)
+        }, 3000),
     );
 
     const fileContent = await fs.readFile("data/places.json");
@@ -41,7 +41,7 @@ export const setUserPlaces = async (req, res) => {
 
     await fs.writeFile(
         "./data/user-places.json",
-        JSON.stringify(updatedUserPlaces)
+        JSON.stringify(updatedUserPlaces),
     );
 
     res.status(200).json({ userPlaces: updatedUserPlaces });
@@ -54,7 +54,7 @@ export const removeUserPlaces = async (req, res) => {
     const userPlacesData = JSON.parse(userPlacesFileContent);
 
     const placeIndex = userPlacesData.findIndex(
-        (place) => place.id === placeId
+        (place) => place.id === placeId,
     );
 
     let updatedUserPlaces = userPlacesData;
@@ -65,7 +65,7 @@ export const removeUserPlaces = async (req, res) => {
 
     await fs.writeFile(
         "./data/user-places.json",
-        JSON.stringify(updatedUserPlaces)
+        JSON.stringify(updatedUserPlaces),
     );
 
     res.status(200).json({ userPlaces: updatedUserPlaces });
