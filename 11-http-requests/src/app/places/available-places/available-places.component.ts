@@ -1,4 +1,11 @@
-import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
+import {
+    Component,
+    DestroyRef,
+    inject,
+    OnInit,
+    signal,
+    ViewEncapsulation,
+} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError, map, throwError } from 'rxjs';
 
@@ -13,6 +20,7 @@ import { Place, PlaceResponse } from '../place.model';
     templateUrl: './available-places.component.html',
     styleUrl: './available-places.component.css',
     imports: [PlacesComponent, PlacesContainerComponent],
+    encapsulation: ViewEncapsulation.None,
 })
 export class AvailablePlacesComponent implements OnInit {
     places = signal<Place[] | undefined>(undefined);
@@ -51,5 +59,13 @@ export class AvailablePlacesComponent implements OnInit {
         this.destroyRef.onDestroy(() => {
             subscription.unsubscribe();
         });
+    }
+
+    onSelectPlace(selectedPlace: Place) {
+        this.httpClient
+            .put('http://localhost:3000/user-places', {
+                placeId: selectedPlace.id,
+            })
+            .subscribe();
     }
 }
