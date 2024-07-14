@@ -70,7 +70,7 @@ footer {
     height: 4.5rem;
     width: 100%;
     border: 1px solid rgba(34, 2, 71, 0.5);
-    background: radial-gradient(#252136 25%, #120f29 100%);
+    background: linear-gradient(180deg, #1a1824 0%, #15131d 100%);
     font-family: var(--secondary-font);
     font-weight: 500;
     letter-spacing: 1.5pt;
@@ -79,6 +79,8 @@ footer {
     justify-content: center;
     align-items: center;
     flex-shrink: 0;
+    border-top-left-radius: 10000px;
+    border-top-right-radius: 10000px;
 }
 
 footer .author,
