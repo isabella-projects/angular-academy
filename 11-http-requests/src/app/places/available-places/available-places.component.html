@@ -1,5 +1,14 @@
 <app-places-container title="Available Places">
-    @if (places()) {
+    @if (isFetching() && !error()) {
+        <div class="preloader-wrapper">
+            <p class="preloader-info">Fetching available places...</p>
+            <img
+                class="preloader"
+                src="loader.svg"
+                alt="Fetching available places..."
+            />
+        </div>
+    } @else if (places()) {
         <app-places
             [places]="places()!"
             (selectPlace)="onSelectPlace($event)"
@@ -7,17 +16,6 @@
     } @else if (places()?.length === 0) {
         <p class="fallback-text">Unfortunately, no places could be found.</p>
     } @else {
-        @if (isFetching() && !error()) {
-            <div class="preloader-wrapper">
-                <p class="preloader-info">Fetching available places...</p>
-                <img
-                    class="preloader"
-                    src="loader.svg"
-                    alt="Fetching available places..."
-                />
-            </div>
-        }
-
         @if (error()) {
             <div class="preloader-wrapper">
                 <p class="fallback-text">{{ error() }}</p>

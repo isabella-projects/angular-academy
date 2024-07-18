@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DatePipe } from '@angular/common';
 
 import { AvailablePlacesComponent } from './places/available-places/available-places.component';
 import { UserPlacesComponent } from './places/user-places/user-places.component';
@@ -8,6 +9,8 @@ import { UserPlacesComponent } from './places/user-places/user-places.component'
     standalone: true,
     templateUrl: './app.component.html',
     styleUrl: './app.component.css',
-    imports: [AvailablePlacesComponent, UserPlacesComponent],
+    imports: [DatePipe, AvailablePlacesComponent, UserPlacesComponent],
 })
-export class AppComponent {}
+export class AppComponent {
+    currentYear: Date = new Date();
+}
