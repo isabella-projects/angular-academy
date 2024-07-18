@@ -6,13 +6,12 @@ import {
     signal,
     ViewEncapsulation,
 } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { catchError, map, throwError } from 'rxjs';
 
 import { PlacesComponent } from '../places.component';
 import { PlacesContainerComponent } from '../places-container/places-container.component';
 
-import { Place, PlaceResponse } from '../place.model';
+import { Place } from '../place.model';
+import { PlacesService } from '../places.service';
 
 @Component({
     selector: 'app-available-places',
@@ -27,25 +26,14 @@ export class AvailablePlacesComponent implements OnInit {
     isFetching = signal<boolean>(false);
     error = signal<string>('');
 
-    private httpClient = inject(HttpClient);
+    private placesService = inject(PlacesService);
     private destroyRef = inject(DestroyRef);
 
     ngOnInit(): void {
         this.isFetching.set(true);
 
-        const subscription = this.httpClient
-            .get<PlaceResponse>('http://localhost:3000/places')
-            .pipe(
-                map((response) => response.places),
-                catchError((_error) =>
-                    throwError(
-                        () =>
-                            new Error(
-                                'Something went wrong! Try again later..',
-                            ),
-                    ),
-                ),
-            )
+        const subscription = this.placesService
+            .loadAvailablePlaces()
             .subscribe({
                 next: (places) => {
                     this.places.set(places);
@@ -62,10 +50,11 @@ export class AvailablePlacesComponent implements OnInit {
     }
 
     onSelectPlace(selectedPlace: Place) {
-        this.httpClient
-            .put('http://localhost:3000/user-places', {
-                placeId: selectedPlace.id,
-            })
+        const subscription = this.placesService
+            .addPlaceToUserPlaces(selectedPlace.id)
             .subscribe();
+        this.destroyRef.onDestroy(() => {
+            subscription.unsubscribe();
+        });
     }
 }
