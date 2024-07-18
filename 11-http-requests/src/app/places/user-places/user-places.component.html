@@ -9,7 +9,10 @@
             />
         </div>
     } @else if (places()) {
-        <app-places [places]="places()!" />
+        <app-places
+            [places]="places()!"
+            (selectPlace)="onRemovePlace($event)"
+        />
     } @else if (places().length === 0) {
         <p class="fallback-text">Unfortunately, no favourite could be found.</p>
     } @else {
