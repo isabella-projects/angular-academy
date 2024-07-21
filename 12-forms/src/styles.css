@@ -2,20 +2,23 @@
 
 * {
     box-sizing: border-box;
+    margin: 0;
 }
 
 body {
-    margin: 0;
     font-family: "Lato", serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background: linear-gradient(#d0d6d9, #b1b4ba);
+    background-color: #74ebd5;
+    background-image: linear-gradient(90deg, #74ebd5 0%, #9face6 100%);
     color: #d9e2f1;
     min-height: 100vh;
+
+    letter-spacing: 0.5pt;
 }
 
 header {
-    margin: 2rem 0;
+    margin: 2rem 0 0.625rem;
     text-align: center;
 }
 
@@ -41,10 +44,11 @@ form {
     width: 90%;
     max-width: 40rem;
     margin: 3rem auto;
-    padding: 2rem;
+    padding: 2.5rem;
     background: linear-gradient(180deg, #253c3c, #1d4949);
     border-radius: 8px;
     box-shadow: 0 0 16px 1px rgba(0, 0, 0, 0.5);
+    position: relative;
 }
 
 .control,
@@ -183,9 +187,11 @@ input.ng-invalid.ng-touched.ng-dirty {
 }
 
 .form-type {
-    display: block;
     text-align: end;
-    margin: 1rem 0 0;
+    font-size: 0.725rem;
     font-style: italic;
     color: #a4aaaa;
+    position: absolute;
+    right: 2%;
+    bottom: 5%;
 }

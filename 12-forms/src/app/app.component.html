@@ -3,4 +3,12 @@
     <h1>Angular Forms</h1>
 </header>
 
-<app-login />
+<div class="form-type-wrapper">
+    <label>Select Form Type:</label>
+    <select [(ngModel)]="formType">
+        <option value="template">Template</option>
+        <option value="reactive">Reactive</option>
+    </select>
+</div>
+
+<app-login [formType]="formType"></app-login>

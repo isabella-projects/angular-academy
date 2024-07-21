@@ -1,0 +1,49 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100dvh;
+}
+
+.form-type-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    width: max-content;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    background: linear-gradient(180deg, #253c3c, #1d4949);
+    border-radius: 8px;
+    position: relative;
+}
+
+.form-type-wrapper::after {
+    position: absolute;
+    content: "";
+    width: 4px;
+    height: 50px;
+    background-color: #1d4949;
+    bottom: -40%;
+    left: 50%;
+}
+
+.form-type-wrapper > label {
+    padding: 1rem 0;
+}
+
+.form-type-wrapper > select {
+    width: 100%;
+    border-radius: 5px;
+    outline: 0;
+    text-align: center;
+    color: #fff;
+    font-size: 1.075rem;
+    background: linear-gradient(180deg, #57a0a09f, #247a7ab4);
+    padding: 0.5rem 1rem;
+}
+
+.form-type-wrapper > select option[value] {
+    color: #000;
+    text-align: start;
+}
