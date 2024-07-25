@@ -17,6 +17,7 @@ import {
 import { debounceTime } from 'rxjs';
 
 import { FormType } from './login.model';
+import { mustContainQuestionMark } from './login.validator';
 
 @Component({
     selector: 'app-login',
@@ -33,7 +34,11 @@ export class LoginComponent {
             validators: [Validators.email, Validators.required],
         }),
         password: new FormControl('', {
-            validators: [Validators.minLength(6), Validators.required],
+            validators: [
+                Validators.minLength(6),
+                Validators.required,
+                mustContainQuestionMark,
+            ],
         }),
     });
 
