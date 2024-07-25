@@ -1,23 +1,22 @@
-import {
-    Component,
-    DestroyRef,
-    effect,
-    inject,
-    input,
-    viewChild,
-} from '@angular/core';
+import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import {
     FormControl,
     FormGroup,
     FormsModule,
-    NgForm,
     ReactiveFormsModule,
     Validators,
 } from '@angular/forms';
 import { debounceTime } from 'rxjs';
 
-import { FormType } from './login.model';
-import { mustContainQuestionMark } from './login.validator';
+import { emailIsUnique, mustContainQuestionMark } from './login.validator';
+
+let initialEmailValue = '';
+const savedForm = localStorage.getItem('saved-login-form');
+
+if (savedForm) {
+    const loadedForm = JSON.parse(savedForm);
+    initialEmailValue = loadedForm.email;
+}
 
 @Component({
     selector: 'app-login',
@@ -26,12 +25,14 @@ import { mustContainQuestionMark } from './login.validator';
     templateUrl: './login.component.html',
     styleUrl: './login.component.css',
 })
-export class LoginComponent {
-    formType = input.required<FormType>();
+export class LoginComponent implements OnInit {
+    // formType = input.required<FormType>();
+    // private templateDrivenForm = viewChild.required<NgForm>('form');
 
     reactiveForm = new FormGroup({
-        email: new FormControl('', {
+        email: new FormControl(initialEmailValue, {
             validators: [Validators.email, Validators.required],
+            asyncValidators: [emailIsUnique],
         }),
         password: new FormControl('', {
             validators: [
@@ -42,7 +43,6 @@ export class LoginComponent {
         }),
     });
 
-    private templateDrivenForm = viewChild.required<NgForm>('form');
     private destroyRef = inject(DestroyRef);
 
     get isEmailValid() {
@@ -61,42 +61,73 @@ export class LoginComponent {
         );
     }
 
-    constructor() {
-        effect(() => {
-            if (this.formType() === 'reactive') {
-            }
+    ngOnInit(): void {
+        /* Normal way, but there's alternative as well
+        const savedForm = localStorage.getItem('saved-login-form');
 
-            if (this.formType() === 'template') {
-                console.log('template');
+        if (savedForm) {
+            const loadedForm = JSON.parse(savedForm);
+            this.reactiveForm.patchValue({
+                email: loadedForm.email,
+            });
+        }
+        */
 
-                const savedForm = localStorage.getItem('saved-login-form');
+        const subscription = this.reactiveForm.valueChanges
+            .pipe(debounceTime(500))
+            .subscribe({
+                next: ({ email }) => {
+                    const cleanedEmail = this.removeSpacing(email);
 
-                if (savedForm) {
-                    const loadedFormData = JSON.parse(savedForm);
-                    const savedEmail = loadedFormData.email;
+                    localStorage.setItem(
+                        'saved-login-form',
+                        JSON.stringify({ email: cleanedEmail }),
+                    );
+                },
+            });
 
-                    setTimeout(() => {
-                        this.templateDrivenForm().controls['email'].setValue(
-                            savedEmail,
-                        );
-                    }, 1);
-                }
-
-                const subscription = this.templateDrivenForm()
-                    .valueChanges?.pipe(debounceTime(500))
-                    .subscribe({
-                        next: ({ email }) => {
-                            localStorage.setItem(
-                                'saved-login-form',
-                                JSON.stringify({ email }),
-                            );
-                        },
-                    });
-                this.destroyRef.onDestroy(() => subscription?.unsubscribe());
-            }
-        });
+        this.destroyRef.onDestroy(() => subscription.unsubscribe());
     }
 
+    onSubmitRF() {
+        console.log(this.reactiveForm);
+    }
+
+    private removeSpacing(input: Partial<string | null | undefined>) {
+        return input?.split(' ').join('');
+    }
+
+    /*
+    constructor() {
+        // use afterNextRender here
+        const savedForm = localStorage.getItem('saved-login-form');
+
+        if (savedForm) {
+            const loadedFormData = JSON.parse(savedForm);
+            const savedEmail = loadedFormData.email;
+
+            setTimeout(() => {
+                this.templateDrivenForm().controls['email'].setValue(
+                    savedEmail,
+                );
+            }, 1);
+        }
+
+        const subscription = this.templateDrivenForm()
+            .valueChanges?.pipe(debounceTime(500))
+            .subscribe({
+                next: ({ email }) => {
+                    localStorage.setItem(
+                        'saved-login-form',
+                        JSON.stringify({ email }),
+                    );
+                },
+            });
+        this.destroyRef.onDestroy(() => subscription?.unsubscribe());
+    }
+    */
+
+    /* Template Driven
     onSubmitTD(formData: NgForm): void {
         if (formData.form.invalid) return;
 
@@ -108,8 +139,5 @@ export class LoginComponent {
 
         formData.form.reset();
     }
-
-    onSubmitRF() {
-        console.log(this.reactiveForm);
-    }
+    */
 }
