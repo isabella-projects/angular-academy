@@ -2,7 +2,6 @@
 
 * {
     box-sizing: border-box;
-    margin: 0;
 }
 
 body {
@@ -13,6 +12,7 @@ body {
     background-image: linear-gradient(90deg, #74ebd5 0%, #9face6 100%);
     color: #d9e2f1;
     min-height: 100vh;
+    margin: 0;
 
     letter-spacing: 0.5pt;
 }
