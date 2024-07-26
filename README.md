@@ -12,12 +12,13 @@
 
 ### 💡 What did I learn through this and published in this repository?
 
-#### ANGULAR 17 & 18 RELEASE
+> [!IMPORTANT]
+>
+> #### 📌 Angular 17 and 18+
 
--   Angular Signals, input, output, inject methods
+-   Angular Signals, input, output, inject methods & a lot more new features
 -   Zoneless
 -   Control flow v17+ - @for, @if, @empty, @defer and more..
-
 -   Lifecycle Hooks
 -   Component structures and splitting
 -   Event binding
