@@ -30,10 +30,15 @@
         <p class="control-error">Please enter a valid email address.</p>
     }
 
-    @if (isPassValid) {
-        <p class="control-error">
-            Please enter a valid password (at least 6 characters long).
-        </p>
+    @if (isPassValid || hasPassSymbol) {
+        @if (isPassValid) {
+            <p class="control-error">
+                Please enter a valid password (at least 6 characters long).
+            </p>
+        }
+        @if (hasPassSymbol) {
+            <p class="control-error">Password must have '?' symbol.</p>
+        }
     }
 </form>
 

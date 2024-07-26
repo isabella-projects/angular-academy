@@ -7,6 +7,7 @@ import {
     Validators,
 } from '@angular/forms';
 import { MemberType } from './signup.model';
+import { equalValues } from './signup.validator';
 
 @Component({
     selector: 'app-signup',
@@ -20,14 +21,19 @@ export class SignupComponent {
         email: new FormControl('', {
             validators: [Validators.email, Validators.required],
         }),
-        passwords: new FormGroup({
-            password: new FormControl('', {
-                validators: [Validators.required, Validators.minLength(6)],
-            }),
-            confirmPassword: new FormControl('', {
-                validators: [Validators.required, Validators.minLength(6)],
-            }),
-        }),
+        passwords: new FormGroup(
+            {
+                password: new FormControl('', {
+                    validators: [Validators.required, Validators.minLength(6)],
+                }),
+                confirmPassword: new FormControl('', {
+                    validators: [Validators.required, Validators.minLength(6)],
+                }),
+            },
+            {
+                validators: [equalValues('password', 'confirmPassword')],
+            },
+        ),
 
         firstName: new FormControl('', { validators: [Validators.required] }),
         lastName: new FormControl('', { validators: [Validators.required] }),
@@ -57,6 +63,11 @@ export class SignupComponent {
     });
 
     onSubmit() {
+        if (this.form.invalid) {
+            console.log('Invalid form');
+            return;
+        }
+
         console.log(this.form);
     }
 

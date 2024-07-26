@@ -54,10 +54,20 @@ export class LoginComponent implements OnInit {
     }
 
     get isPassValid() {
+        const passwordControl = this.reactiveForm.controls.password;
         return (
-            this.reactiveForm.controls.password.touched &&
-            this.reactiveForm.controls.password.dirty &&
-            this.reactiveForm.controls.password.invalid
+            passwordControl.touched &&
+            passwordControl.dirty &&
+            passwordControl.hasError('minlength')
+        );
+    }
+
+    get hasPassSymbol() {
+        const passwordControl = this.reactiveForm.controls.password;
+        return (
+            passwordControl.touched &&
+            passwordControl.dirty &&
+            passwordControl.hasError('doesNotContainQuestionMark')
         );
     }
 
@@ -91,6 +101,9 @@ export class LoginComponent implements OnInit {
 
     onSubmitRF() {
         console.log(this.reactiveForm);
+        if (this.reactiveForm.valid) {
+            this.reactiveForm.reset();
+        }
     }
 
     private removeSpacing(input: Partial<string | null | undefined>) {
