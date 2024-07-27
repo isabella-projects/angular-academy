@@ -1,4 +1,6 @@
-export const TASKS = [
+import { Task } from './task/task.model';
+
+export const TASKS: Task[] = [
     {
         id: 't1',
         userId: 'u1',
