@@ -11,3 +11,5 @@ export interface NewTaskData {
     summary: string;
     date: string;
 }
+
+export type TaskOrder = 'asc' | 'desc';
