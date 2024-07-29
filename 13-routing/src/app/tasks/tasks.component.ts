@@ -1,36 +1,47 @@
-import { Component, computed, inject, input } from '@angular/core';
-import { NgClass } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { Component, inject, input } from '@angular/core';
+import {
+    ActivatedRouteSnapshot,
+    ResolveFn,
+    RouterLink,
+    RouterStateSnapshot,
+} from '@angular/router';
 
 import { TaskComponent } from './task/task.component';
 
 import { TasksService } from './tasks.service';
-import { TaskOrder } from './task/task.model';
+import { Task, TaskOrder } from './task/task.model';
 
 @Component({
     selector: 'app-tasks',
     standalone: true,
-    imports: [TaskComponent, RouterLink, NgClass],
+    imports: [TaskComponent, RouterLink],
     templateUrl: './tasks.component.html',
     styleUrl: './tasks.component.css',
 })
 export class TasksComponent {
-    private tasksService = inject(TasksService);
+    userTasks = input.required<Task[]>();
     userId = input.required<string>();
-    order = input<TaskOrder>('desc');
-
-    userTasks = computed(() =>
-        this.tasksService
-            .allTasks()
-            .filter((task) => task.userId === this.userId())
-            .sort((a, b) => {
-                if (this.order() === 'asc') {
-                    return a.id > b.id ? 1 : -1;
-                } else {
-                    return a.id > b.id ? -1 : 1;
-                }
-            })
-    );
-
-    hasUserTasks = computed(() => this.userTasks().length > 0);
+    order = input<TaskOrder>();
 }
+
+// Resolver function to get all user tasks - cleaner way
+export const resolveUserTasks: ResolveFn<Task[]> = (
+    activatedRoute: ActivatedRouteSnapshot,
+    routerState: RouterStateSnapshot,
+) => {
+    const order = activatedRoute.queryParams['order'];
+    const tasksService = inject(TasksService);
+    const tasks = tasksService
+        .allTasks()
+        .filter(
+            (task) => task.userId === activatedRoute.paramMap.get('userId'),
+        );
+
+    if (order && order === 'asc') {
+        tasks.sort((a, b) => (a.id > b.id ? 1 : -1));
+    } else {
+        tasks.sort((a, b) => (a.id > b.id ? -1 : 1));
+    }
+
+    return tasks.length ? tasks : [];
+};

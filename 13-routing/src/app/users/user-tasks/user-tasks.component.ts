@@ -1,6 +1,5 @@
 import {
     Component,
-    computed,
     inject,
     input,
     // Input,
@@ -9,7 +8,13 @@ import {
 } from '@angular/core';
 
 import { UsersService } from '../users.service';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import {
+    ActivatedRouteSnapshot,
+    ResolveFn,
+    RouterLink,
+    RouterOutlet,
+    RouterStateSnapshot,
+} from '@angular/router';
 
 // import { ActivatedRoute } from '@angular/router';
 
@@ -21,9 +26,11 @@ import { RouterLink, RouterOutlet } from '@angular/router';
     styleUrl: './user-tasks.component.css',
 })
 export class UserTasksComponent {
-    /* Most common approach by having the same property name as the route 'userId' in this case */
-    userId = input.required<string>();
+    userName = input.required<string>();
+    message = input.required<string>();
 
+    /* Instead of this we are using resolver function
+    userId = input.required<string>();
     private usersService = inject(UsersService);
 
     userName = computed(
@@ -31,6 +38,7 @@ export class UserTasksComponent {
             this.usersService.users.find((user) => user.id === this.userId())
                 ?.name
     );
+    */
 
     /* Another old approach by using observables - same property as the route name is NOT needed
     userName = '';
@@ -56,7 +64,7 @@ export class UserTasksComponent {
     }
     */
 
-    /* Getting username without signals
+    /* Getting username without signals - reminder of old inputs
     @Input({ required: true }) userId!: string;
 
     get userName() {
@@ -65,3 +73,24 @@ export class UserTasksComponent {
     }
     */
 }
+
+// Resolver function for getting username
+export const resolveUserName: ResolveFn<string> = (
+    activatedRoute: ActivatedRouteSnapshot,
+    routerState: RouterStateSnapshot
+) => {
+    const usersService = inject(UsersService);
+    const userName =
+        usersService.users.find(
+            (user) => user.id === activatedRoute.paramMap.get('userId')
+        )?.name || '';
+
+    return userName;
+};
+
+export const resolveTitle: ResolveFn<string> = (
+    activatedRoute: ActivatedRouteSnapshot,
+    routerState: RouterStateSnapshot
+) => {
+    return resolveUserName(activatedRoute, routerState) + "'s Tasks";
+};
