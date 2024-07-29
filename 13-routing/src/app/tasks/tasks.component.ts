@@ -1,15 +1,16 @@
 import { Component, computed, inject, input } from '@angular/core';
+import { NgClass } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 import { TaskComponent } from './task/task.component';
 
 import { TasksService } from './tasks.service';
-import { ActivatedRoute, RouterLink } from '@angular/router';
 import { TaskOrder } from './task/task.model';
 
 @Component({
     selector: 'app-tasks',
     standalone: true,
-    imports: [TaskComponent, RouterLink],
+    imports: [TaskComponent, RouterLink, NgClass],
     templateUrl: './tasks.component.html',
     styleUrl: './tasks.component.css',
 })
@@ -23,11 +24,13 @@ export class TasksComponent {
             .allTasks()
             .filter((task) => task.userId === this.userId())
             .sort((a, b) => {
-                if (this.order() === 'desc') {
-                    return a.id > b.id ? -1 : 1;
-                } else {
+                if (this.order() === 'asc') {
                     return a.id > b.id ? 1 : -1;
+                } else {
+                    return a.id > b.id ? -1 : 1;
                 }
             })
     );
+
+    hasUserTasks = computed(() => this.userTasks().length > 0);
 }

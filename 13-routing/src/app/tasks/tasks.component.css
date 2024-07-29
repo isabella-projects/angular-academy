@@ -18,3 +18,9 @@ a:hover,
 a:active {
     color: #9b79c6;
 }
+
+a.disabled {
+    color: gray;
+    pointer-events: none;
+    cursor: not-allowed;
+}
