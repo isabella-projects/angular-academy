@@ -18,7 +18,7 @@
 
 -   Angular Signals, input, output, inject methods & a lot more new features
 -   Zoneless
--   Control flow v17+ - @for, @if, @empty, @defer and more..
+-   Control flow v17+ - @for, @if, @empty, @defer & more modern features..
 -   Lifecycle Hooks
 -   Component structures and splitting
 -   Event binding
@@ -33,8 +33,8 @@
 -   Services & Dependency Injection
 -   HTTP Requests & Handling responses
 -   User input handling with Forms - Template-driven & reactive
--   **Routing** and Multi-page Single Page Applications
--   Code splitting & deferrable views
+-   **Routing** & Multi-page Single Page Applications
+-   Code splitting & deferrable views (Lazy Loading)
 -   Properly deploying Angular Apps - CSR, SSR, SGA
 
 # 🛠 Tech Stack
@@ -42,6 +42,8 @@
 <div>
     <img src="https://github.com/devicons/devicon/blob/master/icons/typescript/typescript-original.svg" title="TypeScript" alt="TypeScript" width="45" height="45"/>&nbsp;
     <img src="https://github.com/devicons/devicon/blob/master/icons/angular/angular-original.svg" title="Angular" alt="Angular" width="45" height="45"/>&nbsp;
+    <img src="https://github.com/devicons/devicon/blob/master/icons/rxjs/rxjs-original.svg" title="RxJS" alt="RxJS" width="45" height="45"/>&nbsp;
+    <img src="https://github.com/devicons/devicon/blob/master/icons/ngrx/ngrx-original.svg" title="NgRx" alt="NgRx" width="45" height="45"/>&nbsp;
     <img src="https://github.com/devicons/devicon/blob/master/icons/css3/css3-original.svg" title="CSS3" alt="CSS3" width="45" height="45"/>&nbsp;
     <img src="https://github.com/devicons/devicon/blob/master/icons/vitejs/vitejs-original.svg" title="ViteJS" alt="ViteJS" width="45" height="45"/>&nbsp;
     <img src="https://github.com/devicons/devicon/blob/master/icons/git/git-original.svg" title="Git" alt="Git" width="45" height="45"/>&nbsp;
