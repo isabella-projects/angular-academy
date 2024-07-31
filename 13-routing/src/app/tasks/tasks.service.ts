@@ -4,9 +4,7 @@ import { type Task, type NewTaskData } from './task/task.model';
 
 import { TASKS } from './tasks';
 
-@Injectable({
-    providedIn: 'root',
-})
+@Injectable()
 export class TasksService {
     private tasks = signal<Task[]>(TASKS);
 
@@ -36,7 +34,7 @@ export class TasksService {
 
     removeTask(id: string) {
         this.tasks.update((prevTasks) =>
-            prevTasks.filter((task) => task.id !== id)
+            prevTasks.filter((task) => task.id !== id),
         );
         this.saveTasks();
     }
