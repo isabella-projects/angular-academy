@@ -1,14 +1,5 @@
-import { inject } from '@angular/core';
-import {
-    CanMatchFn,
-    RedirectCommand,
-    Route,
-    Router,
-    Routes,
-    UrlSegment,
-} from '@angular/router';
+import { Routes } from '@angular/router';
 
-import { routes as userRoutes } from './users/users.routes';
 import {
     resolveTitle,
     resolveUserName,
@@ -40,7 +31,8 @@ export const routes: Routes = [
     {
         path: 'users/:userId', // <domain>/users/4 (e.g)
         component: UserTasksComponent,
-        children: userRoutes,
+        loadChildren: () =>
+            import('./users/users.routes').then((mod) => mod.routes),
         // canMatch: [dummyCanMatch],
         data: {
             message: 'Hello',
