@@ -43,4 +43,17 @@
     </p>
 </section>
 
-<app-offer-preview />
+@defer (on interaction(checkOffer)) {
+    @if (offerAvailable) {
+        <app-offer-preview />
+    } @else {
+        <p class="fallback">No offer available this time!</p>
+    }
+} @placeholder {
+    <div class="btn-wrapper fallback">
+        <p>We might have an offer</p>
+        <button class="check-offer" #checkOffer (click)="onOfferAvailable()">
+            Click here to see!
+        </button>
+    </div>
+}

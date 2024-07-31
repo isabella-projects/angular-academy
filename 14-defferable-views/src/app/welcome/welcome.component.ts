@@ -8,4 +8,10 @@ import { OfferPreviewComponent } from '../offer-preview/offer-preview.component'
     templateUrl: './welcome.component.html',
     styleUrl: './welcome.component.css',
 })
-export class WelcomeComponent {}
+export class WelcomeComponent {
+    offerAvailable: boolean = false;
+
+    onOfferAvailable(): boolean {
+        return (this.offerAvailable = Math.random() < 0.2);
+    }
+}

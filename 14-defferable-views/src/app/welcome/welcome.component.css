@@ -34,3 +34,17 @@ section p {
     line-height: 1.5;
     color: #c3b1dc;
 }
+
+.check-offer {
+    padding: 0.7rem 0.9rem;
+    border-radius: 6px;
+    font-size: 1.2rem;
+    background: linear-gradient(to right, #c8a1ec, #cd71f5);
+    cursor: pointer;
+    border: none;
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.check-offer:hover {
+    box-shadow: 0 0 16px 2px #f44fa2;
+}

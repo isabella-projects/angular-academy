@@ -16,11 +16,7 @@ export class OfferPreviewComponent {
 
     timer = timer(0, 1000).pipe(
         map((val) => {
-            console.log(val);
-
             if (!val) {
-                console.log('no val');
-
                 return 100;
             }
             return ((OFFER_TIME - val) / OFFER_TIME) * 100;
