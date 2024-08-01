@@ -4,7 +4,7 @@ import { AsyncPipe } from '@angular/common';
 import { Observable } from 'rxjs';
 
 import { Store } from '@ngrx/store';
-import { ICounterShape } from './counter-output.model';
+import { ICounterOutput } from './counter-output.model';
 
 @Component({
     selector: 'app-counter-output',
@@ -15,7 +15,7 @@ import { ICounterShape } from './counter-output.model';
 })
 export class CounterOutputComponent {
     count$: Observable<number>;
-    store = inject<Store<ICounterShape>>(Store);
+    store = inject<Store<ICounterOutput>>(Store);
 
     constructor() {
         this.count$ = this.store.select('counter');

@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 
 import { Store } from '@ngrx/store';
 
-import { ICounterShape } from '../counter-output/counter-output.model';
+import { ICounterOutput } from '../counter-output/counter-output.model';
 import { decrement, increment } from '../store/counter.actions';
 
 @Component({
@@ -13,7 +13,7 @@ import { decrement, increment } from '../store/counter.actions';
     styleUrl: './counter-controls.component.css',
 })
 export class CounterControlsComponent {
-    store = inject<Store<ICounterShape>>(Store);
+    store = inject<Store<ICounterOutput>>(Store);
 
     increment() {
         this.store.dispatch(

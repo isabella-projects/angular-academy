@@ -1,3 +1,3 @@
-export interface ICounterShape {
+export interface ICounterOutput {
     counter: number;
 }
