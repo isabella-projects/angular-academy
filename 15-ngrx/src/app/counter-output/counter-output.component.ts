@@ -15,7 +15,7 @@ import { ICounterOutput } from './counter-output.model';
 })
 export class CounterOutputComponent {
     count$: Observable<number>;
-    store = inject<Store<ICounterOutput>>(Store);
+    private store = inject<Store<ICounterOutput>>(Store);
 
     constructor() {
         this.count$ = this.store.select('counter');
