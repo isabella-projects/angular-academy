@@ -18,15 +18,17 @@
     justify-content: center;
 }
 
+.wrapper .content div:nth-last-of-type(2),
 .wrapper .content div:last-of-type {
     width: 100px;
-    min-height: 3rem;
+    min-height: 100px;
     align-self: self-start;
 }
 
 h1 {
     color: #2b2b2b;
     font-size: 2.625rem;
+    text-align: center;
 }
 
 .deco {
@@ -107,4 +109,10 @@ input:focus-within {
 
 .list-group-item:last-of-type {
     border-bottom: none;
+}
+
+@media (width <= 506px) {
+    .deco {
+        display: none;
+    }
 }
