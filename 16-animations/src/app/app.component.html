@@ -1,0 +1,35 @@
+<div class="wrapper">
+    <div class="content">
+        <h1>Angular Animations</h1>
+        <span class="deco"></span>
+        <div class="btn-anim">
+            <button class="btn" (click)="onAnimate()">Animate</button>
+            <button class="btn" (click)="onShrink()">Shrink</button>
+        </div>
+        <hr />
+        <div [@divState]="state"></div>
+    </div>
+    <hr />
+    <div class="content">
+        <input type="text" placeholder="Add new ingredient.." #input />
+        <button class="btn" (click)="onAdd(input.value)">Add Item</button>
+        <hr />
+        <ul class="list-group">
+            @for (item of list; track item) {
+                <li class="list-group-item" (click)="onDelete(item)">
+                    {{ item }}
+                </li>
+            }
+        </ul>
+    </div>
+    <hr />
+    <div class="content">
+        <ul class="list-group">
+            @for (item of list; track item) {
+                <li class="list-group-item" (click)="onDelete(item)">
+                    {{ item }}
+                </li>
+            }
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,110 @@
+.wrapper {
+    margin: auto 3rem;
+}
+
+.wrapper .content:first-of-type {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.wrapper .content:first-of-type hr {
+    width: 100%;
+}
+
+.wrapper .content:first-of-type .btn-anim {
+    display: flex;
+    width: 45%;
+    justify-content: center;
+}
+
+.wrapper .content div:last-of-type {
+    width: 100px;
+    min-height: 3rem;
+    align-self: self-start;
+}
+
+h1 {
+    color: #2b2b2b;
+    font-size: 2.625rem;
+}
+
+.deco {
+    position: absolute;
+    top: 4.7rem;
+    width: 25rem;
+    z-index: -1;
+    height: 0.925rem;
+    background: linear-gradient(90deg, #f7594b75, #f9a01980, #f7594b7d);
+    transform: skew(325deg);
+}
+
+.btn {
+    padding: 0.7rem 0.9rem;
+    background-color: #0e57aa;
+    color: #fff;
+    font-size: 1.325rem;
+    border-radius: 6px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    max-width: 12rem;
+    width: 100%;
+    margin: 0.325rem;
+}
+
+.btn:hover {
+    background-color: #084386;
+}
+
+input {
+    padding: 0.7rem 0.9rem;
+    margin-right: 1rem;
+    outline: none;
+    border: 1px solid rgba(30, 30, 30, 0.45);
+    font-size: 1.275rem;
+    border-radius: 4px;
+    box-shadow:
+        inset -2px -2px 4px rgba(32, 32, 32, 0.25),
+        inset 2px 2px 4px rgba(32, 32, 32, 0.25);
+    transition: background-color 0.2s ease-in;
+}
+
+input::placeholder {
+    font-size: 1.175rem;
+    font-style: italic;
+}
+
+input:hover,
+input:active,
+input:focus-within {
+    background-color: #e6e3e3;
+}
+
+.list-group {
+    padding: 0;
+    border: 1px solid rgba(30, 30, 30, 0.45);
+    border-radius: 6px;
+}
+
+.list-group-item {
+    font-size: 1.275rem;
+    padding: 0.825rem;
+    list-style-type: none;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(30, 30, 30, 0.45);
+    font-weight: 500;
+    transition: all 0.2s ease-in;
+}
+
+.list-group-item:hover {
+    background-color: #e6e3e3;
+}
+
+.list-group-item:active {
+    background-color: #fa9f9f;
+}
+
+.list-group-item:last-of-type {
+    border-bottom: none;
+}
