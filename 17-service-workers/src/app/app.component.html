@@ -1,0 +1,16 @@
+<h1 class="center">Service Workers | Fetching dummy data</h1>
+<hr />
+
+<div class="post-content">
+    @defer {
+        @if (error()) {
+            <p>Sorry, we could not find any places.</p>
+        } @else {
+            @for (post of posts(); track post.id) {
+                <app-post [title]="post.title" [content]="post.body" />
+            }
+        }
+    } @placeholder {
+        <h1 class="center">Fetching places..</h1>
+    }
+</div>

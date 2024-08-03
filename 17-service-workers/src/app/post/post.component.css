@@ -1,0 +1,12 @@
+:host {
+    padding: 1rem;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+    font-family: "Oswald", sans-serif;
+    width: 30rem;
+    max-width: 80%;
+}
+
+h1 {
+    font-family: inherit;
+    font-weight: bold;
+}
