@@ -5,6 +5,7 @@ import { PostComponent } from './post/post.component';
 import { AppService } from './app.service';
 
 import { Post } from './post.model';
+import { throwError } from 'rxjs';
 
 @Component({
     selector: 'app-root',
@@ -15,7 +16,6 @@ import { Post } from './post.model';
 })
 export class AppComponent implements OnInit {
     posts = signal<Post[] | undefined>(undefined);
-    error = signal<string>('');
 
     private postsService = inject(AppService);
     private destroyRef = inject(DestroyRef);
@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
                 this.posts.set(post);
             },
             error: (error: Error) => {
-                this.error.set(error.message);
+                throwError(() => new Error(error.message));
             },
             complete: () => console.log('All posts fetched successfully!'),
         });
