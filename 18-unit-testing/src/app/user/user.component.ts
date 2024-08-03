@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { IUser } from './user.model';
+import { UserService } from './user.service';
 
 @Component({
     selector: 'app-user',
@@ -8,7 +9,13 @@ import { IUser } from './user.model';
     templateUrl: './user.component.html',
     styleUrl: './user.component.css',
 })
-export class UserComponent {
-    user: IUser = { name: 'Developer' };
-    isLoggedIn: boolean = true;
+export class UserComponent implements OnInit {
+    user!: IUser;
+    isLoggedIn: boolean = false;
+
+    private usersService = inject(UserService);
+
+    ngOnInit(): void {
+        this.user = this.usersService.user;
+    }
 }

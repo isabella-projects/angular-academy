@@ -2,6 +2,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UserComponent } from './user.component';
 
+import { UserService } from './user.service';
+
 describe('UserComponent', () => {
     let component: UserComponent;
     let fixture: ComponentFixture<UserComponent>;
@@ -22,12 +24,21 @@ describe('UserComponent', () => {
         expect(app).toBeTruthy();
     });
 
-    it('should output the developer', () => {
-        const fixture = TestBed.createComponent(UserComponent);
+    it('should use the user name from the service', () => {
+        let fixture = TestBed.createComponent(UserComponent);
+        let app = fixture.debugElement.componentInstance;
+        let userService = fixture.debugElement.injector.get(UserService);
         fixture.detectChanges();
-        const compiled = fixture.nativeElement as HTMLElement;
+        expect(userService.user.name).toEqual(app.user.name);
+    });
 
-        const titleEl = compiled.querySelector('p:nth-of-type(1)');
-        expect(titleEl?.textContent).toContain('Developer');
+    it("shouldn't display the user name if user is not logged in", () => {
+        let fixture = TestBed.createComponent(UserComponent);
+        let app = fixture.debugElement.componentInstance;
+        fixture.detectChanges();
+        let compiled = fixture.debugElement.nativeElement as HTMLElement;
+        expect(compiled.querySelector('span')?.textContent).not.toEqual(
+            app.user.name,
+        );
     });
 });
