@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import {
+    AnimationEvent,
     animate,
     group,
     keyframes,
@@ -181,5 +182,23 @@ export class AppComponent {
 
     onDelete(item: string): void {
         this.list.splice(this.list.indexOf(item), 1);
+    }
+
+    /**
+     * Callback functions, where we can do something during the starting/ending animation phases
+     * @event AnimationEvent
+     * @method start - Animation start event method
+     */
+    animationStarted(event: AnimationEvent) {
+        console.log(event);
+    }
+
+    /**
+     * Callback functions, where we can do something during the starting/ending animation phases
+     * @event AnimationEvent
+     * @method done - Animation end event method
+     */
+    animationEnded(event: AnimationEvent) {
+        console.log(event);
     }
 }
